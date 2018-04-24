@@ -4,6 +4,10 @@
   "version": "1.0.1",
   "author": "Chanwit Piromplad <kingkong2103@gmail.com>",
   "license": "MIT",
+  "main": "public/vue-highlight-text.min.js",
+  "files": [
+    "public"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
