@@ -1,7 +1,7 @@
 {
   "name": "vue-highlight-text",
   "description": "highlight text search with keyword",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Chanwit Piromplad <kingkong2103@gmail.com>",
   "license": "MIT",
   "scripts": {
