@@ -1,6 +1,6 @@
 # vue-highlight-text
 
-> highlight text search with keyword
+> Vue component for highlight multiple istances of a word
 
 ## Installation
 ```bash

@@ -1,6 +1,6 @@
 {
   "name": "vue-highlight-text",
-  "description": "highlight text search with keyword",
+  "description": "Vue component for highlight multiple istances of a word",
   "version": "1.1.0",
   "author": "Chanwit Piromplad <kingkong2103@gmail.com>",
   "license": "MIT",
@@ -8,6 +8,10 @@
   "files": [
     "public"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TonPC64/vue-highlight-text.git"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
