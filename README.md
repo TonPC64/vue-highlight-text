@@ -2,17 +2,23 @@
 
 > highlight text search with keyword
 
-## Build Setup
+## Installation
+```bash
+# with yarn
+yarn add vue-highlight-text
 
-``` bash
-# install dependencies
-npm install
+# with npm
+npm install --save vue-highlight-text
+```
+## Usage
+```js
+import Vue from 'vue'
+import HighlightText from './components/VueHighlightText'
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
+Vue.component('HighlightText', HighlightText)
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## In file vue
+```html
+<HighlightText :keyword="keyword" :sensitive="sensitive">{{msg}}</HighlightText>
+```

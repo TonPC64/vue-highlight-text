@@ -1,19 +1,26 @@
 <template>
   <div id="app">
-    <Highlight :message="msg" keyword="App" />
+    <HighlightText :keyword="keyword" :sensitive="sensitive" >
+      (l)Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.
+    </HighlightText>
+    <br/>
+    <input type="text" placeholder="keyword" v-model="keyword">
+    <input type="checkbox" v-model="sensitive"> sensitive : {{sensitive}}
   </div>
 </template>
 
 <script>
-import Highlight from './components/VueHighlightText'
+import HighlightText from './components/VueHighlightText'
 export default {
   name: 'app',
   components: {
-    Highlight
+    HighlightText
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      keyword: 'lo',
+      sensitive: false
     }
   }
 }
