@@ -6,7 +6,7 @@ module.exports = {
     babelrc: false
   },
   banner: true,
-  format: ['umd-min'],
+  format: ['umd', 'umd-min'],
   css: true,
   plugins: [
     vue({ css: true })
