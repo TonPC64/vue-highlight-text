@@ -13,7 +13,7 @@ npm install --save vue-highlight-text
 ## Usage
 ```js
 import Vue from 'vue'
-import HighlightText from './components/VueHighlightText'
+import HighlightText from 'vue-highlight-text'
 
 Vue.component('HighlightText', HighlightText)
 ```
