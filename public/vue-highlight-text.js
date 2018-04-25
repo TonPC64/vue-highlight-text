@@ -61,7 +61,7 @@
       var styleString = '';
 
       if (checkStyle(overWriteStyle)) {
-        newStyle = Object.assign(defaultStyle, overWriteStyle);
+        newStyle = Object.assign(newStyle, overWriteStyle);
       }
 
       styleString = "style=\"".concat(toStyleString(newStyle), "\"");
@@ -83,7 +83,7 @@
       var styleString = '';
 
       if (checkStyle(overWriteStyle)) {
-        newStyle = Object.assign(defaultStyle, overWriteStyle);
+        newStyle = Object.assign(newStyle, overWriteStyle);
       }
 
       styleString = "style=\"".concat(toStyleString(newStyle), "\"");

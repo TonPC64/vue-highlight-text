@@ -3,7 +3,7 @@
     <h1>Example</h1>
     <div>
       <h2>Component no style</h2>
-      <HighlightText :keyword="keyword" :sensitive="sensitive">{{msg}}</HighlightText>
+      <HighlightText :keyword="keyword" :sensitive="sensitive" :overWriteStyle="style">{{msg}}</HighlightText>
     </div>
     <div>
       <h2>directive with default</h2>
@@ -15,7 +15,10 @@
       v-highlight="{
         keyword: keyword,
         sensitive: sensitive,
-        overWriteStyle: style
+        overWriteStyle: {
+          color: 'red',
+          backgroundColor: 'blue'
+        }
       }">
         {{msg}}
       </span>
@@ -48,7 +51,7 @@ export default {
       sensitive: false,
       style: {
         color: '#F0F',
-        backgroundColor: 'blue'
+        backgroundColor: 'green'
       }
     }
   }

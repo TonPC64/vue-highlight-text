@@ -39,3 +39,4 @@ Vue.directive('highlight', highlight)
 |:-----|:-----|:--------|:------------|
 | keyword | string | '' | word for highlight in message. |
 | sensitive | bool | true | highlight with case sensitive |
+| overWriteStyle | Object | {color: '#00C1E8'} | custom highlight for overwrite style by HTML DOM Style Object |

@@ -41,7 +41,7 @@ export default {
     let styleString = ''
 
     if (checkStyle(overWriteStyle)) {
-      newStyle = Object.assign(defaultStyle, overWriteStyle)
+      newStyle = Object.assign(newStyle, overWriteStyle)
     }
 
     styleString = `style="${toStyleString(newStyle)}"`
@@ -60,7 +60,7 @@ export default {
     let styleString = ''
 
     if (checkStyle(overWriteStyle)) {
-      newStyle = Object.assign(defaultStyle, overWriteStyle)
+      newStyle = Object.assign(newStyle, overWriteStyle)
     }
 
     styleString = `style="${toStyleString(newStyle)}"`
