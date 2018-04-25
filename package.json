@@ -1,7 +1,7 @@
 {
   "name": "vue-highlight-text",
   "description": "Vue component for highlight multiple istances of a word",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "author": "Chanwit Piromplad <kingkong2103@gmail.com>",
   "license": "MIT",
   "main": "public/vue-highlight-text.min.js",
@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "build:directive": "bili src/components/HighlightText.js --filename directive.js",    
+    "build:directive": "bili src/components/HighlightText.js --filename directive.js",
     "build:component": "bili src/components/VueHighlightText.vue --filename [name].js",
     "bundle": "npm run build:directive && npm run build:component"
   },
