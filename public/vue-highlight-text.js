@@ -1,5 +1,5 @@
 /*!
- * vue-highlight-text v1.1.2
+ * vue-highlight-text v1.2.0
  * (c) 2018-present Chanwit Piromplad <kingkong2103@gmail.com>
  * Released under the MIT License.
  */
@@ -37,13 +37,15 @@
       var _binding$value = binding.value,
           keyword = _binding$value.keyword,
           sensitive = _binding$value.sensitive;
-      el.innerHTML = highlightSeach(originalContent, keyword, getFlags(sensitive));
+      var newSensitive = sensitive === undefined ? true : sensitive;
+      el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive));
     },
     update: function update(el, binding) {
       var _binding$value2 = binding.value,
           keyword = _binding$value2.keyword,
           sensitive = _binding$value2.sensitive;
-      el.innerHTML = highlightSeach(originalContent, keyword, getFlags(sensitive));
+      var newSensitive = sensitive === undefined ? true : sensitive;
+      el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive));
     },
     unbind: function unbind(el) {
       el.innerHTML = originalContent;

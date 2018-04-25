@@ -22,11 +22,13 @@ const HighlightTextDirective = {
   bind(el, binding) {
     originalContent = el.innerHTML
     const { value: {keyword, sensitive} } = binding
-    el.innerHTML = highlightSeach(originalContent, keyword, getFlags(sensitive))
+    let newSensitive = sensitive === undefined ? true : sensitive
+    el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive))
   },
   update(el, binding) {
     const { value: {keyword, sensitive} } = binding
-    el.innerHTML = highlightSeach(originalContent, keyword, getFlags(sensitive))
+    let newSensitive = sensitive === undefined ? true : sensitive
+    el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive))
   },
   unbind(el) {
     el.innerHTML = originalContent
