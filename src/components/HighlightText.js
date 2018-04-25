@@ -1,5 +1,4 @@
-import toStyle from 'to-style'
-const toStyleString = toStyle.string
+const toStyleString = require('to-style').string
 
 let originalContent = undefined
 const defaultStyle = {
@@ -44,7 +43,7 @@ export default {
     if (checkStyle(overWriteStyle)) {
       newStyle = Object.assign(defaultStyle, overWriteStyle)
     }
-    
+
     styleString = `style="${toStyleString(newStyle)}"`
     let newSensitive = sensitive === undefined ? true : sensitive
     el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive), styleString)
