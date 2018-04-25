@@ -32,3 +32,13 @@ Vue.directive('highlight', highlight)
 <!-- Directive -->
 <span v-highlight="{keyword: keyword}">{{msg}}</span>
 ```
+
+## Props or value of directive
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| keyword | string | '' | word for highlight in message. |
+| sensitive | bool | true | highlight with case sensitive |
+
+
+
