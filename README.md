@@ -39,6 +39,3 @@ Vue.directive('highlight', highlight)
 |:-----|:-----|:--------|:------------|
 | keyword | string | '' | word for highlight in message. |
 | sensitive | bool | true | highlight with case sensitive |
-
-
-

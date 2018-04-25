@@ -1,4 +1,11 @@
+import toStyle from 'to-style'
+const toStyleString = toStyle.string
+
 let originalContent = undefined
+const defaultStyle = {
+  color: '#00C1E8'
+}
+
 
 const getFlags = function (sensitive) {
   let flag = 'g'
@@ -10,29 +17,58 @@ const escapeRegExp = function (str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
 }
 
-const highlightSeach = function (message, keyword, flags) {  
+const highlightSeach = function (message, keyword, flags, styleString) {  
   const match = new RegExp(`(${escapeRegExp(keyword)})`,flags)
   if (match.test(message)) {
-    return message.replace(match, `<span style="color: #0084FF;">\$&</span>`)
+    return message.replace(match, `<span ${styleString}>\$&</span>`)
   }
   return message
 }
 
-const HighlightTextDirective = {
+const checkStyle = (overWriteStyle) => !!overWriteStyle && JSON.stringify(overWriteStyle) !== '{}'
+const copyObj = (obj) => JSON.parse(JSON.stringify(obj))
+
+export default {
   bind(el, binding) {
     originalContent = el.innerHTML
-    const { value: {keyword, sensitive} } = binding
+    const { value: {keyword, sensitive, overWriteStyle} } = binding
+    
+    if (keyword && keyword == '') {
+      el.innerHTML = originalContent
+      return
+    }
+
+    let newStyle = copyObj(defaultStyle)
+    let styleString = ''
+
+    if (checkStyle(overWriteStyle)) {
+      newStyle = Object.assign(defaultStyle, overWriteStyle)
+    }
+    
+    styleString = `style="${toStyleString(newStyle)}"`
     let newSensitive = sensitive === undefined ? true : sensitive
-    el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive))
+    el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive), styleString)
   },
   update(el, binding) {
-    const { value: {keyword, sensitive} } = binding
+    const { value: {keyword, sensitive, overWriteStyle} } = binding
+
+    if (keyword && keyword == '') {
+      el.innerHTML = originalContent
+      return
+    }
+
+    let newStyle = copyObj(defaultStyle)
+    let styleString = ''
+
+    if (checkStyle(overWriteStyle)) {
+      newStyle = Object.assign(defaultStyle, overWriteStyle)
+    }
+
+    styleString = `style="${toStyleString(newStyle)}"`
     let newSensitive = sensitive === undefined ? true : sensitive
-    el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive))
+    el.innerHTML = highlightSeach(originalContent, keyword, getFlags(newSensitive), styleString)
   },
   unbind(el) {
     el.innerHTML = originalContent
   }
 }
-
-export default HighlightTextDirective

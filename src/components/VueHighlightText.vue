@@ -1,5 +1,5 @@
 <template>
-  <span v-highlight="{keyword: keyword, sensitive: sensitive}" >{{message}}</span>
+  <span v-highlight="{keyword, sensitive, overWriteStyle}" >{{message}}</span>
 </template>
 
 
@@ -15,6 +15,10 @@ export default {
       type: Boolean,
       default: true
     },
+    overWriteStyle: {
+      type: Object,
+      default: () => {return {}}
+    }
   },
   directives: {
     highlight: HighlightText

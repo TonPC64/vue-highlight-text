@@ -1,12 +1,32 @@
 <template>
   <div id="app">
-    <HighlightText :keyword="keyword">
-      {{msg}}
-    </HighlightText>
-    <br/>
-    <div><span v-highlight="{keyword: keyword}">{{msg}}</span></div>
-    <input type="text" placeholder="keyword" v-model="keyword">
-    <input type="checkbox" v-model="sensitive"> sensitive : {{sensitive}}
+    <h1>Example</h1>
+    <div>
+      <h2>Component no style</h2>
+      <HighlightText :keyword="keyword" :sensitive="sensitive">{{msg}}</HighlightText>
+    </div>
+    <div>
+      <h2>directive with default</h2>
+      <span v-highlight="{keyword}">{{msg}}</span>
+    </div>
+    <div>
+      <h2>directive all </h2>
+      <span 
+      v-highlight="{
+        keyword: keyword,
+        sensitive: sensitive,
+        overWriteStyle: style
+      }">
+        {{msg}}
+      </span>
+    </div>
+    <h2>input</h2>
+    <div>
+     keyword: <input type="text" placeholder="keyword" v-model="keyword">
+    </div>
+    <div>
+      <input type="checkbox" v-model="sensitive">Case Sensitive : {{sensitive}}
+    </div>
   </div>
 </template>
 
@@ -23,39 +43,31 @@ export default {
   },
   data () {
     return {
-      msg: '(l)Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.',
+      msg: 'Lorem ipsum dolor',
       keyword: 'lo',
-      sensitive: false
+      sensitive: false,
+      style: {
+        color: '#F0F',
+        backgroundColor: 'blue'
+      }
     }
   }
 }
 </script>
 
-<style>
+<style >
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  left: 0;
+  right: 0;
+  margin: auto;
   margin-top: 60px;
+  width: 500px;
 }
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+.highlight {
+  color: green !important;
 }
 </style>
