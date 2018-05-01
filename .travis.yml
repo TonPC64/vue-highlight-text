@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - "lts/*"
+cache:
+  directories:
+    - "node_modules"
+before_script:
+  - yarn
+script:
+  - yarn bundle
+  - yarn build
+deploy:
+  - provider: surge
+    project: ./dist/
+    domain: vue-highlight-text.surge.sh
+    skip-cleanup: true
+    on:
+      branch: master
+  - provider: npm
+    email: ${EMAIL}
+    api_key: ${AUTH_TOKEN}
+    skip_cleanup: true
+    on:
+      branch: master
