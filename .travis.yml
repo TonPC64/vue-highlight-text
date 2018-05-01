@@ -11,7 +11,7 @@ script:
   - yarn build
 deploy:
   - provider: surge
-    project: ./dist/
+    project: ./
     domain: vue-highlight-text.surge.sh
     skip-cleanup: true
     on:
