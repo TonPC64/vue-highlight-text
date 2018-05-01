@@ -22,7 +22,6 @@
       <b>overWriteStyle</b> {{overWriteStyle}}
     </div>
     <div>
-      <b>RawText</b>: <textarea style="width: 100%" placeholder="raw text" v-model="msg" /><br>
       <b>Keyword</b>: <input type="text" placeholder="keyword" v-model="keyword"><br>
       <input type="checkbox" v-model="sensitive" style="width: 20px; height: 20px">Case Sensitive : <b>{{sensitive}}</b>
     </div>
