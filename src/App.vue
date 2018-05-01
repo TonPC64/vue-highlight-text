@@ -1,41 +1,39 @@
 <template>
   <div id="app">
-    <h1>Example</h1>
+    <h1>Example Highlight</h1>
     <div>
-      <h2>Component no style</h2>
-      <HighlightText :keyword="keyword" :sensitive="sensitive" :overWriteStyle="style">{{msg}}</HighlightText>
+      <h2>Component with default props</h2>
+      <HighlightText :keyword="keyword">{{msg}}</HighlightText>
     </div>
     <div>
-      <h2>directive with default</h2>
+      <h2>Directive with default value</h2>
       <span v-highlight="{keyword}">{{msg}}</span>
     </div>
     <div>
-      <h2>directive all </h2>
-      <span 
-      v-highlight="{
-        keyword: keyword,
-        sensitive: sensitive,
-        overWriteStyle: {
-          color: 'red',
-          backgroundColor: 'blue'
-        }
-      }">
-        {{msg}}
-      </span>
+      <h2>Component all props</h2>
+      <HighlightText :keyword="keyword" :sensitive="sensitive" :overWriteStyle="overWriteStyle">{{msg}}</HighlightText>
+    </div>
+    <div>
+      <h2>Directive all value</h2>
+      <span v-highlight="{keyword, sensitive, overWriteStyle}">{{msg}}</span>
     </div>
     <h2>input</h2>
     <div>
-     keyword: <input type="text" placeholder="keyword" v-model="keyword">
+      <b>overWriteStyle</b> {{overWriteStyle}}
     </div>
     <div>
-      <input type="checkbox" v-model="sensitive">Case Sensitive : {{sensitive}}
+      <b>RawText</b>: <textarea style="width: 100%" placeholder="raw text" v-model="msg" /><br>
+      <b>Keyword</b>: <input type="text" placeholder="keyword" v-model="keyword"><br>
+      <input type="checkbox" v-model="sensitive" style="width: 20px; height: 20px">Case Sensitive : <b>{{sensitive}}</b>
     </div>
   </div>
 </template>
 
 <script>
-import HighlightText from './components/VueHighlightText'
-import highlight from './components/HighlightText'
+import HighlightText from './components/VueHighlightText';
+import highlight from './components/HighlightText';
+import toStyle from 'to-style';
+
 export default {
   name: 'app',
   components: {
@@ -44,18 +42,18 @@ export default {
   directives: {
     highlight
   },
-  data () {
+  data() {
     return {
       msg: 'Lorem ipsum dolor',
       keyword: 'lo',
       sensitive: false,
-      style: {
-        color: '#F0F',
-        backgroundColor: 'green'
+      overWriteStyle: {
+        color: 'red',
+        backgroundColor: 'blue'
       }
-    }
+    };
   }
-}
+};
 </script>
 
 <style >
