@@ -1,6 +1,5 @@
 const toStyleString = require('to-style').string
 
-let originalContent = undefined
 const defaultStyle = {
   color: '#00C1E8'
 }
@@ -26,12 +25,13 @@ const highlightSearch = function(message, keyword, flags, styleString) {
 const checkStyle = overWriteStyle => !!overWriteStyle && JSON.stringify(overWriteStyle) !== '{}'
 const copyObj = obj => JSON.parse(JSON.stringify(obj))
 
-const beforeHighlight = (el, binding) => {
+const beforeHighlight = (el, binding, original) => {
   const {
     value: { keyword, sensitive, overWriteStyle }
   } = binding
-  if (keyword && keyword == '') {
-    el.innerHTML = originalContent
+
+  if (!keyword || keyword === '') {
+    el.innerHTML = replaceWithOriginal(original, original)
     return
   }
 
@@ -43,20 +43,26 @@ const beforeHighlight = (el, binding) => {
   }
 
   styleString = `style="${toStyleString(newStyle)}"`
-  let newSensitive = sensitive === undefined ? true : sensitive
-  el.innerHTML = highlightSearch(originalContent, keyword, getFlags(newSensitive), styleString)
+  const newSensitive = sensitive === undefined ? true : sensitive
+  const highlight = highlightSearch(original, keyword, getFlags(newSensitive), styleString)
+  el.innerHTML = replaceWithOriginal(original, highlight)
+}
+
+const replaceWithOriginal = (original, newText) => {
+  return `<p style="display:none;">${original}</p>${newText}`
 }
 
 export default {
   bind(el, binding) {
-    originalContent = el.innerHTML
-    beforeHighlight(el, binding)
+    el.innerHTML = replaceWithOriginal(el.innerHTML, el.innerHTML)
+    beforeHighlight(el, binding, el.children[0].innerHTML)
   },
   update(el, binding) {
-    console.log(originalContent)
-    beforeHighlight(el, binding)
+    const original = el.children[0].innerHTML
+    el.innerHTML = replaceWithOriginal(original, original)
+    beforeHighlight(el, binding, el.children[0].innerHTML)
   },
   unbind(el) {
-    el.innerHTML = originalContent
+    el.innerHTML = el.children[0].innerHTML
   }
 }

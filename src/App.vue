@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Example Highlight</h1>
-    <!-- <div>
+    <div>
       <h2>Component with default props</h2>
       <HighlightText :keyword="keyword">{{msg}}</HighlightText>
     </div>
@@ -16,23 +16,24 @@
     <div>
       <h2>Directive all value</h2>
       <span v-highlight="{keyword, sensitive, overWriteStyle}">{{msg}}</span>
-    </div> -->
-    <span :key="index" v-highlight="{keyword}" v-for="(data, index) in loopData">{{data.name}}</span>
+    </div>
+    <div :key="index" v-highlight={keyword} v-for="(data, index) in loopData">{{data.text}}</div>
     <h2>input</h2>
     <div>
       <b>overWriteStyle</b> {{overWriteStyle}}
     </div>
     <div>
       <b>Keyword</b>: <input type="text" placeholder="keyword" v-model="keyword"><br>
-      <input type="checkbox" v-model="sensitive" style="width: 20px; height: 20px">Case Sensitive : <b>{{sensitive}}</b>
+      <input type="checkbox" v-model="sensitive" style="width: 20px; height: 20px">Case Sensitive :
+      <b>{{sensitive}}</b>
     </div>
   </div>
 </template>
 
 <script>
-import HighlightText from './components/VueHighlightText';
-import highlight from './components/HighlightText';
-import toStyle from 'to-style';
+import HighlightText from './components/VueHighlightText'
+import highlight from './components/HighlightText'
+import toStyle from 'to-style'
 
 export default {
   name: 'app',
@@ -45,20 +46,16 @@ export default {
   data() {
     return {
       msg: 'Lorem ipsum dolor',
-      keyword: 'lo',
+      keyword: '1',
       sensitive: false,
       overWriteStyle: {
         color: 'red',
         backgroundColor: 'blue'
       },
-      loopData: [
-        {name: '1'},
-        {name: '2'},
-        {name: '3'}
-      ]
-    };
+      loopData: [{ text: 'text1' }, { text: 'text2' }, { text: 'text3' }]
+    }
   }
-};
+}
 </script>
 
 <style >
