@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Example Highlight</h1>
-    <div>
+    <!-- <div>
       <h2>Component with default props</h2>
       <HighlightText :keyword="keyword">{{msg}}</HighlightText>
     </div>
@@ -16,7 +16,8 @@
     <div>
       <h2>Directive all value</h2>
       <span v-highlight="{keyword, sensitive, overWriteStyle}">{{msg}}</span>
-    </div>
+    </div> -->
+    <span :key="index" v-highlight="{keyword}" v-for="(data, index) in loopData">{{data.name}}</span>
     <h2>input</h2>
     <div>
       <b>overWriteStyle</b> {{overWriteStyle}}
@@ -49,7 +50,12 @@ export default {
       overWriteStyle: {
         color: 'red',
         backgroundColor: 'blue'
-      }
+      },
+      loopData: [
+        {name: '1'},
+        {name: '2'},
+        {name: '3'}
+      ]
     };
   }
 };
