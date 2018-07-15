@@ -23,7 +23,11 @@
       <b>overWriteStyle</b> {{overWriteStyle}}
     </div>
     <div>
-      <b>Keyword</b>: <input type="text" placeholder="keyword" v-model="keyword"><br>
+      <!-- <b>Keyword</b>: <input type="text" placeholder="keyword" v-model="keyword"><br> -->
+      <b>Keyword</b>:
+      <ul :key="index" v-for="(k, index) in keyword">
+        <li><b>{{k}}</b></li>
+      </ul>
       <input type="checkbox" v-model="sensitive" style="width: 20px; height: 20px">Case Sensitive :
       <b>{{sensitive}}</b>
     </div>
@@ -46,7 +50,7 @@ export default {
   data() {
     return {
       msg: 'Lorem ipsum dolor',
-      keyword: '1',
+      keyword: ['Lorem', 'ipsum', 'dolor', 'text1'],
       sensitive: false,
       overWriteStyle: {
         color: 'red',

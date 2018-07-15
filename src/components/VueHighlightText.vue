@@ -8,7 +8,7 @@ import HighlightText from './HighlightText'
 export default {
   props: {
     keyword: {
-      type: String,
+      type: [String, Array],
       required: true
     },
     sensitive: {

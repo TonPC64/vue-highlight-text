@@ -15,7 +15,18 @@ const escapeRegExp = function(str) {
 }
 
 const highlightSearch = function(message, keyword, flags, styleString) {
-  const match = new RegExp(`(${escapeRegExp(keyword)})`, flags)
+  let newKeyword = keyword
+  let regexWord = ''
+  if (typeof keyword === String) {
+    regexWord =  escapeRegExp(newKeyword)
+  } else if (Array.isArray(keyword) && keyword.length > 0) {
+    regexWord = keyword.map(k => escapeRegExp(k)).join('|')
+  } else {
+    console.warn('type is not String or Array')
+    return ''
+  }
+
+  const match = new RegExp(`(${regexWord})`, flags)
   if (match.test(message)) {
     return message.replace(match, `<span ${styleString}>\$&</span>`)
   }
