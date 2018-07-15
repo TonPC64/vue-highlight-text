@@ -4,7 +4,7 @@
 [![NPM downloads](https://img.shields.io/npm/dm/vue-highlight-text.svg?style=flat)](https://npmjs.com/package/vue-highlight-text)
 [![Build Status](https://travis-ci.org/TonPC64/vue-highlight-text.svg?branch=master)](https://travis-ci.org/TonPC64/vue-highlight-text)
 
-> Vue component for highlight multiple istances of a word
+> Vue component for highlight multiple instances of a word
 
 ![](./images/example.gif)
 
