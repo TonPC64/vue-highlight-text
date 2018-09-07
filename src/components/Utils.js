@@ -24,7 +24,7 @@ const highlightSearch = function(message, keyword, flags = 'g', newStyle = defau
   let styleString = `style="${toStyleString(newStyle)}"`
   let newKeyword = keyword
   let regexWord = ''
-  if (typeof keyword === String) {
+  if (typeof keyword === 'string') {
     if (/^\s*$/.test(keyword)) {
       // when the keyword is empty string, return the original message.
       return message;
