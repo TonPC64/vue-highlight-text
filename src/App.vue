@@ -32,7 +32,7 @@
       <!-- <b>Keyword</b>: <input type="text" placeholder="keyword" v-model="keyword"><br> -->
       <b>Keyword</b>:
       <input type="text" v-model="newKeyword">
-      <button@click="addKeyword(newKeyword)">Add Keyword</button>
+      <button @click="addKeyword(newKeyword)">Add Keyword</button>
       <ul :key="index" v-for="(k, index) in keyword">
         <li>
           <b>{{k}}</b>
