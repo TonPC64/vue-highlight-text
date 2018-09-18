@@ -18,6 +18,12 @@
       <span v-highlight="{keyword, sensitive, overWriteStyle}">{{msg}}</span>
     </div>
     <div :key="index" v-highlight={keyword} v-for="(data, index) in loopData">{{data.text}}</div>
+    <div>
+      <h2>Directive all value with string keyword</h2>
+      <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{msg}}</span>
+      <input type="text" v-model="keywordStr">
+    </div>
+
     <h2>input</h2>
     <div>
       <b>overWriteStyle</b> {{overWriteStyle}}
@@ -51,6 +57,7 @@ export default {
     return {
       msg: 'Lorem ipsum dolor',
       keyword: ['Lorem', 'ipsum', 'dolor', 'text1'],
+      keywordStr: 'lorem',
       sensitive: false,
       overWriteStyle: {
         color: 'red',
