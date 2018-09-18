@@ -35,12 +35,12 @@ const replaceWithOriginal = (original, newText) => {
 }
 
 export default {
-  bind(el, binding) {
+  bind(el, binding, vnode) {
     el.innerHTML = replaceWithOriginal(el.innerHTML, el.innerHTML)
     beforeHighlight(el, binding, el.children[0].innerHTML)
   },
-  update(el, binding) {
-    const original = el.children[0].innerHTML
+  componentUpdated(el, binding, vnode) {
+    const original = vnode.children[0].text
     el.innerHTML = replaceWithOriginal(original, original)
     beforeHighlight(el, binding, el.children[0].innerHTML)
   },

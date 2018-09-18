@@ -1,5 +1,7 @@
 <template>
-  <span v-highlight="{keyword, sensitive, overWriteStyle}" >{{message}}</span>
+  <span v-highlight="{keyword, sensitive, overWriteStyle}" >
+      <slot></slot>
+  </span>
 </template>
 
 
@@ -22,11 +24,6 @@ export default {
   },
   directives: {
     highlight: HighlightText
-  },
-  computed: {
-    message () {
-      return this.$slots.default[0].text
-    }
   }
 }
 </script>
