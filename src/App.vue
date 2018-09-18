@@ -20,8 +20,8 @@
     <div :key="index" v-highlight={keyword} v-for="(data, index) in loopData">{{data.text}}</div>
     <div>
       <h2>Directive all value with string keyword</h2>
-      <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{msg}}</span>
-      <input type="text" v-model="keywordStr">
+      <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{msg}}</span><br/>
+      <b>Keyword</b>: <input type="text" v-model="keywordStr">
     </div>
 
     <h2>input</h2>
@@ -31,8 +31,13 @@
     <div>
       <!-- <b>Keyword</b>: <input type="text" placeholder="keyword" v-model="keyword"><br> -->
       <b>Keyword</b>:
+      <input type="text" v-model="newKeyword">
+      <button@click="addKeyword(newKeyword)">Add Keyword</button>
       <ul :key="index" v-for="(k, index) in keyword">
-        <li><b>{{k}}</b></li>
+        <li>
+          <b>{{k}}</b>
+          <button @click="keyword.splice(index, 1)">X</button>
+        </li>
       </ul>
       <input type="checkbox" v-model="sensitive" style="width: 20px; height: 20px">Case Sensitive :
       <b>{{sensitive}}</b>
@@ -53,11 +58,18 @@ export default {
   directives: {
     highlight
   },
+  methods: {
+    addKeyword (text) {
+      this.keyword.push(text)
+      this.newKeyword = ''
+    }
+  },
   data() {
     return {
       msg: 'Lorem ipsum dolor',
       keyword: ['Lorem', 'ipsum', 'dolor', 'text1'],
       keywordStr: 'lorem',
+      newKeyword: '',
       sensitive: false,
       overWriteStyle: {
         color: 'red',
