@@ -24,6 +24,18 @@
       <b>Keyword</b>: <input type="text" v-model="keywordStr">
     </div>
 
+    <div>
+      <h2>Directive all value with string keyword</h2>
+      <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{html}}</span><br/>
+      <b>Keyword</b>: <input type="text" v-model="keywordStr">
+    </div>
+
+    <div>
+      <h2>Directive all value with string keyword</h2>
+      <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{script}}</span><br/>
+      <b>Keyword</b>: <input type="text" v-model="keywordStr">
+    </div>
+
     <h2>input</h2>
     <div>
       <b>overWriteStyle</b> {{overWriteStyle}}
@@ -67,12 +79,14 @@ export default {
   data() {
     return {
       msg: 'Lorem ipsum dolor',
+      html: '<span style="color: red">Hello</span>',
+      script: `<script>alert('hello')<\/script>`,
       keyword: ['Lorem', 'ipsum', 'dolor', 'text1'],
-      keywordStr: 'lorem',
+      keywordStr: 'Hello',
       newKeyword: '',
       sensitive: false,
       overWriteStyle: {
-        color: 'red',
+        color: 'green',
         backgroundColor: 'blue'
       },
       loopData: [{ text: 'text1' }, { text: 'text2' }, { text: 'text3' }]

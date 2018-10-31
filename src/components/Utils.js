@@ -5,7 +5,7 @@ const defaultStyle = {
 }
 
 const escapeRegExp = function(str) {
-  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|\<\>]/g, '\\$&')
 }
 
 /**
@@ -24,32 +24,61 @@ const highlightSearch = function(message, keyword, flags = 'g', newStyle = defau
   let styleString = `style="${toStyleString(newStyle)}"`
   let newKeyword = keyword
   let regexWord = ''
+  console.log({message})
   if (typeof keyword === 'string') {
     if (/^\s*$/.test(keyword)) {
       // when the keyword is empty string, return the original message.
-      return message;
+      return escapeHtml(message)
     }
     regexWord =  escapeRegExp(newKeyword)
   } else if (Array.isArray(keyword) && keyword.length > 0) {
     let kws = keyword.filter(s => !/^\s*$/.test(keyword))
     if (kws.length === 0) {
       // when the keyword is empty string, return the original message.
-      return message
+      return escapeHtml(message)
     }
     regexWord = keyword.map(k => escapeRegExp(k)).join('|')
   } else {
     console.warn('type is not String or Array')
     // return ''
-    return message
+    return escapeHtml(message)
   }
 
   // const match = new RegExp(`(${regexWord})`, flags)
   // Can only replace the words out of the html tags.
-  const match = new RegExp(`(${regexWord})(?![^<]*>)`, flags)
-  if (match.test(message)) {
-    return message.replace(match, `<span ${styleString}>\$&</span>`)
+  const match = new RegExp(`(${regexWord})`, flags)
+  const testMath = match.test(message)
+  console.log({testMath})
+  if (testMath) {
+    console.log({match})
+    // return escapeHtml(message).replace(match, `<span ${styleString}>\$&</span>`)
+    const replaced = message.replace(match, `:;{{:;\$&:;}}:;`)
+    console.log({replaced})
+    const matchAgain = new RegExp(`:;{{:;(${escapeHtml(regexWord)}):;}}:;`, flags)
+    const restoreReplaced = escapeHtml(replaced).replace(matchAgain, `<span ${styleString}>\$1</span>`)
+    return restoreReplaced
   }
-  return message
+  return escapeHtml(message)
 }
 
-export default {highlightSearch, defaultStyle}
+
+
+const escapeHtml = (unsafe) => {
+  return unsafe
+    .replace(/&/g, `&amp;`)
+    .replace(/</g, `&lt;`)
+    .replace(/>/g, `&gt;`)
+    .replace(/"/g, `&quot;`)
+    .replace(/'/g, `&#039;`)
+}
+
+const unescapeHtml = (safe) => {
+  return safe
+    .replace(/&amp;/g, `&`)
+    .replace(/&lt;/g, `<`)
+    .replace(/&gt;/g, `>`)
+    .replace(/&quot;/g, `"`)
+    .replace(/&#039;/g, `'`)
+}
+
+export default {highlightSearch, defaultStyle, escapeHtml, unescapeHtml}

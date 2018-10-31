@@ -10,12 +10,14 @@ const checkStyle = overWriteStyle => !!overWriteStyle && JSON.stringify(overWrit
 const copyObj = obj => JSON.parse(JSON.stringify(obj))
 
 const beforeHighlight = (el, binding, original) => {
+  console.log({original})
   const {
     value: { keyword, sensitive, overWriteStyle }
   } = binding
 
   if (!keyword || keyword === '') {
-    el.innerHTML = replaceWithOriginal(original, original)
+    const escaseOriginal = utils.escapeHtml(original)
+    el.innerHTML = replaceWithOriginal(escaseOriginal, escaseOriginal)
     return
   }
 
@@ -27,7 +29,8 @@ const beforeHighlight = (el, binding, original) => {
 
   const newSensitive = sensitive === undefined ? true : sensitive
   const highlight = utils.highlightSearch(original, keyword, getFlags(newSensitive), newStyle)
-  el.innerHTML = replaceWithOriginal(original, highlight)
+  console.log({highlight})
+  el.innerHTML = replaceWithOriginal(utils.escapeHtml(original), highlight)
 }
 
 const replaceWithOriginal = (original, newText) => {
@@ -35,14 +38,17 @@ const replaceWithOriginal = (original, newText) => {
 }
 
 export default {
-  bind(el, binding, vnode) {
-    el.innerHTML = replaceWithOriginal(el.innerHTML, el.innerHTML)
-    beforeHighlight(el, binding, el.children[0].innerHTML)
+  bind(el, binding) {
+    const originalString = el.innerHTML+''
+    console.log({originalString})
+    el.innerHTML = replaceWithOriginal(originalString, originalString)
+    beforeHighlight(el, binding, utils.unescapeHtml(originalString))
   },
   componentUpdated(el, binding, vnode) {
-    const original = vnode.children[0].text
-    el.innerHTML = replaceWithOriginal(original, original)
-    beforeHighlight(el, binding, el.children[0].innerHTML)
+    const originalString = utils.escapeHtml(vnode.children[0].text)
+    console.log({originalString})
+    el.innerHTML = replaceWithOriginal(originalString, originalString)
+    beforeHighlight(el, binding, utils.unescapeHtml(originalString))
   },
   unbind(el) {
     el.innerHTML = el.children[0].innerHTML
