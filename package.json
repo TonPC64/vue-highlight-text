@@ -1,7 +1,7 @@
 {
   "name": "vue-highlight-text",
   "description": "Vue component for highlight multiple istances of a word",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "author": "Chanwit Piromplad <kingkong2103@gmail.com>",
   "license": "MIT",
   "main": "public/vue-highlight-text.min.js",
