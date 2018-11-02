@@ -10,7 +10,6 @@ const checkStyle = overWriteStyle => !!overWriteStyle && JSON.stringify(overWrit
 const copyObj = obj => JSON.parse(JSON.stringify(obj))
 
 const beforeHighlight = (el, binding, original) => {
-  console.log({original})
   const {
     value: { keyword, sensitive, overWriteStyle }
   } = binding
@@ -29,7 +28,6 @@ const beforeHighlight = (el, binding, original) => {
 
   const newSensitive = sensitive === undefined ? true : sensitive
   const highlight = utils.highlightSearch(original, keyword, getFlags(newSensitive), newStyle)
-  console.log({highlight})
   el.innerHTML = replaceWithOriginal(utils.escapeHtml(original), highlight)
 }
 
@@ -40,13 +38,11 @@ const replaceWithOriginal = (original, newText) => {
 export default {
   bind(el, binding) {
     const originalString = el.innerHTML+''
-    console.log({originalString})
     el.innerHTML = replaceWithOriginal(originalString, originalString)
     beforeHighlight(el, binding, utils.unescapeHtml(originalString))
   },
   componentUpdated(el, binding, vnode) {
     const originalString = utils.escapeHtml(vnode.children[0].text)
-    console.log({originalString})
     el.innerHTML = replaceWithOriginal(originalString, originalString)
     beforeHighlight(el, binding, utils.unescapeHtml(originalString))
   },

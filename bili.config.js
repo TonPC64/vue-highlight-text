@@ -1,5 +1,4 @@
 const vue = require('rollup-plugin-vue');
-console.log(vue)
 module.exports = {
   outDir: 'public',
   babel: {

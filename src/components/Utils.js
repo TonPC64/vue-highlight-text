@@ -24,7 +24,6 @@ const highlightSearch = function(message, keyword, flags = 'g', newStyle = defau
   let styleString = `style="${toStyleString(newStyle)}"`
   let newKeyword = keyword
   let regexWord = ''
-  console.log({message})
   if (typeof keyword === 'string') {
     if (/^\s*$/.test(keyword)) {
       // when the keyword is empty string, return the original message.
@@ -48,12 +47,9 @@ const highlightSearch = function(message, keyword, flags = 'g', newStyle = defau
   // Can only replace the words out of the html tags.
   const match = new RegExp(`(${regexWord})`, flags)
   const testMath = match.test(message)
-  console.log({testMath})
   if (testMath) {
-    console.log({match})
     // return escapeHtml(message).replace(match, `<span ${styleString}>\$&</span>`)
     const replaced = message.replace(match, `:;{{:;\$&:;}}:;`)
-    console.log({replaced})
     const matchAgain = new RegExp(`:;{{:;(${escapeHtml(regexWord)}):;}}:;`, flags)
     const restoreReplaced = escapeHtml(replaced).replace(matchAgain, `<span ${styleString}>\$1</span>`)
     return restoreReplaced
