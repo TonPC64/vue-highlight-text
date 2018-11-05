@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header w-100pct dp-flex jtf-ct-space-between al-it-center">
       <div class="f-s-32px f-w-bold">
-        🔦 vue-highlight-text
+        <a href="#Home" class="mg-l-10px f-w-900">🔦 vue-highlight-text</a>
         <iframe class="mg-l-10px"
           src="https://ghbtns.com/github-btn.html?user=TonPC64&repo=vue-highlight-text&type=star&count=true&size=large"
           frameborder="0"
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="body pd-20px">
-      <div>
+      <div id="Home">
         <a href="https://npmjs.com/package/vue-highlight-text" target="_blank">
           <img src="https://img.shields.io/npm/v/vue-highlight-text.svg?style=flat" alt="">
         </a>
@@ -82,8 +82,8 @@
       </div>
       <hr>
 
-      <div id="Example" class="pd-20px">
-        <div class="w-fit-content">
+      <div id="Example" class="pd-20px dp-flex f-w-wrap">
+        <div class="w-50pct">
           <span class="f-s-28px f-w-bold"># Example</span>
           <div>
             <div class="f-s-20px pd-20px f-w-bold">input</div>
@@ -159,8 +159,10 @@
           </div>
         </div>
 
-        <div>
-
+        <div class="w-50pct">
+          <VEmbed :id="gist" :options="{ emoji: true }">
+            https://gist.github.com/Paretkf/d76bab6516f516e12521d1852ecb9b03
+          </VEmbed>
         </div>
       </div>
     </div>
@@ -171,11 +173,12 @@
 import HighlightText from './components/VueHighlightText'
 import highlight from './components/HighlightText'
 import toStyle from 'to-style'
-
+import VEmbed from 'vue-embed'
 export default {
   name: 'app',
   components: {
-    HighlightText
+    HighlightText,
+    VEmbed
   },
   directives: {
     highlight
