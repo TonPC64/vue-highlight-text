@@ -83,78 +83,84 @@
       <hr>
 
       <div id="Example" class="pd-20px">
-        <span class="f-s-28px f-w-bold"># Example</span>
-        <div>
-          <div class="f-s-20px pd-20px f-w-bold">input</div>
-          <div class="box w-fit-content pd-20px mg-l-20px">
-            <div>
-              <b>overWriteStyle</b> {{overWriteStyle}}
-            </div>
-            <div>
-              <b>Keyword</b>:
-              <input type="text" v-model="newKeyword">
-              <button @click="addKeyword(newKeyword)">Add Keyword</button>
-              <div :key="index" v-for="(k, index) in keyword" class="pd-5px">
-                <b-tag
-                  size="is-medium"
-                  closable
-                  @close="keyword.splice(index, 1)">
-                    {{k}}
-                </b-tag>
-                <br>
+        <div class="w-fit-content">
+          <span class="f-s-28px f-w-bold"># Example</span>
+          <div>
+            <div class="f-s-20px pd-20px f-w-bold">input</div>
+            <div class="box w-fit-content pd-20px mg-l-20px">
+              <div>
+                <b>overWriteStyle</b> {{overWriteStyle}}
               </div>
-              <b-switch v-model="sensitive">{{sensitive}}</b-switch>
+              <div>
+                <b>Keyword</b>:
+                <input type="text" v-model="newKeyword" class="input is-small w-50pct">
+                <div class="button is-small" @click="addKeyword(newKeyword)">Add Keyword</div>
+                <div :key="index" v-for="(k, index) in keyword" class="pd-5px">
+                  <b-tag
+                    size="is-medium"
+                    closable
+                    @close="keyword.splice(index, 1)">
+                      {{k}}
+                  </b-tag>
+                  <br>
+                </div>
+                Case Sensitive : <b-switch v-model="sensitive">{{sensitive}}</b-switch>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="f-s-20px pd-20px f-w-bold">Component with default props</div>
+            <div class="box w-fit-content pd-20px mg-l-20px">
+              <HighlightText :keyword="keyword">{{msg}}</HighlightText>
+            </div>
+          </div>
+          <div>
+            <div class="f-s-20px pd-20px f-w-bold">Directive with default value</div>
+            <div class="box w-fit-content pd-20px mg-l-20px">
+              <span v-highlight="{keyword}">{{msg}}</span>
+            </div>
+          </div>
+          <div>
+            <div class="f-s-20px pd-20px f-w-bold">Component all props</div>
+            <div class="box w-fit-content pd-20px mg-l-20px">
+              <HighlightText :keyword="keyword" :sensitive="sensitive" :overWriteStyle="overWriteStyle">{{msg}}</HighlightText>
+            </div>
+          </div>
+          <div>
+            <div class="f-s-20px pd-20px f-w-bold">Directive all value</div>
+            <div class="box w-fit-content pd-20px mg-l-20px">
+              <span v-highlight="{keyword, sensitive, overWriteStyle}">{{msg}}</span>
+              <div :key="index" v-highlight={keyword} v-for="(data, index) in loopData">{{data.text}}</div>
+            </div>
+          </div>
+          <div>
+            <div class="f-s-20px pd-20px f-w-bold">Directive all value with string keyword</div>
+            <div class="box w-fit-content pd-20px mg-l-20px">
+              <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{msg}}</span><br/>
+              <b>Keyword</b>: <input type="text" v-model="keywordStr" class="input is-small w-50pct">
+            </div>
+          </div>
+
+          <div>
+            <div class="f-s-20px pd-20px f-w-bold">Directive all value with string keyword</div>
+            <div class="box w-fit-content pd-20px mg-l-20px">
+              <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{html}}</span><br/>
+              <b>Keyword</b>: <input type="text" v-model="keywordStr" class="input is-small w-50pct">
+            </div>
+          </div>
+
+          <div>
+            <div class="f-s-20px pd-20px f-w-bold">Directive all value with string keyword</div>
+            <div class="box w-fit-content pd-20px mg-l-20px">
+              <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{script}}</span><br/>
+              <b>Keyword</b>: <input type="text" v-model="keywordStr" class="input is-small w-50pct">
             </div>
           </div>
         </div>
 
         <div>
-          <div class="f-s-20px pd-20px f-w-bold">Component with default props</div>
-          <div class="box w-fit-content pd-20px mg-l-20px">
-            <HighlightText :keyword="keyword">{{msg}}</HighlightText>
-          </div>
-        </div>
-        <div>
-          <div class="f-s-20px pd-20px f-w-bold">Directive with default value</div>
-          <div class="box w-fit-content pd-20px mg-l-20px">
-            <span v-highlight="{keyword}">{{msg}}</span>
-          </div>
-        </div>
-        <div>
-          <div class="f-s-20px pd-20px f-w-bold">Component all props</div>
-          <div class="box w-fit-content pd-20px mg-l-20px">
-            <HighlightText :keyword="keyword" :sensitive="sensitive" :overWriteStyle="overWriteStyle">{{msg}}</HighlightText>
-          </div>
-        </div>
-        <div>
-          <div class="f-s-20px pd-20px f-w-bold">Directive all value</div>
-          <div class="box w-fit-content pd-20px mg-l-20px">
-            <span v-highlight="{keyword, sensitive, overWriteStyle}">{{msg}}</span>
-            <div :key="index" v-highlight={keyword} v-for="(data, index) in loopData">{{data.text}}</div>
-          </div>
-        </div>
-        <div>
-          <div class="f-s-20px pd-20px f-w-bold">Directive all value with string keyword</div>
-          <div class="box w-fit-content pd-20px mg-l-20px">
-            <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{msg}}</span><br/>
-            <b>Keyword</b>: <input type="text" v-model="keywordStr">
-          </div>
-        </div>
 
-        <div>
-          <div class="f-s-20px pd-20px f-w-bold">Directive all value with string keyword</div>
-          <div class="box w-fit-content pd-20px mg-l-20px">
-            <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{html}}</span><br/>
-            <b>Keyword</b>: <input type="text" v-model="keywordStr">
-          </div>
-        </div>
-
-        <div>
-          <div class="f-s-20px pd-20px f-w-bold">Directive all value with string keyword</div>
-          <div class="box w-fit-content pd-20px mg-l-20px">
-            <b>Messages</b>: <span v-highlight="{keyword: keywordStr, sensitive, overWriteStyle}">{{script}}</span><br/>
-            <b>Keyword</b>: <input type="text" v-model="keywordStr">
-          </div>
         </div>
       </div>
     </div>
