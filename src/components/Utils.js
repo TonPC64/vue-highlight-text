@@ -51,7 +51,7 @@ const highlightSearch = function(message, keyword, flags = 'g', newStyle = defau
     // return escapeHtml(message).replace(match, `<span ${styleString}>\$&</span>`)
     const replaced = message.replace(match, `:;{{:;\$&:;}}:;`)
     const matchAgain = new RegExp(`:;{{:;(${escapeHtml(regexWord)}):;}}:;`, flags)
-    const restoreReplaced = escapeHtml(replaced).replace(matchAgain, `<span ${styleString}>\$1</span>`)
+    const restoreReplaced = escapeHtml(replaced).replace(matchAgain, `<span class="highlighted" ${styleString}>\$1</span>`)
     return restoreReplaced
   }
   return escapeHtml(message)
