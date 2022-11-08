@@ -14,7 +14,7 @@ const beforeHighlight = (el, binding, original) => {
     value: { keyword, sensitive, overWriteStyle }
   } = binding
 
-  if (!keyword || keyword === '') {
+  if (!keyword) {
     const escaseOriginal = utils.escapeHtml(original)
     el.innerHTML = replaceWithOriginal(escaseOriginal, escaseOriginal)
     return
@@ -37,7 +37,9 @@ const replaceWithOriginal = (original, newText) => {
 
 export default {
   bind(el, binding) {
-    const originalString = el.innerHTML+''
+    // Two consecutive spaces will be converted by innerHTML into a space and a &nbsp;
+    // then &nbsp; converted into &amp;nbsp;
+    const originalString = `${el.innerText}`
     el.innerHTML = replaceWithOriginal(originalString, originalString)
     beforeHighlight(el, binding, utils.unescapeHtml(originalString))
   },
