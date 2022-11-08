@@ -14,7 +14,7 @@ const beforeHighlight = (el, binding, original) => {
     value: { keyword, sensitive, overWriteStyle }
   } = binding
 
-  if (!keyword || keyword === '') {
+  if (!keyword) {
     const escaseOriginal = utils.escapeHtml(original)
     el.innerHTML = replaceWithOriginal(escaseOriginal, escaseOriginal)
     return
